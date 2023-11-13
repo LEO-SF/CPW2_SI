@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import fundo from './assets/fundo.jpg';
 import playerIMG from './assets/Spaceship/player.png';
 import balaPNG from './assets/Spaceship/bala.png';
+import { controles } from './cursors.js';
 
 class MyGame extends Phaser.Scene
 {
@@ -46,39 +47,13 @@ class MyGame extends Phaser.Scene
 
     update(){
 
-        cursors = this.input.keyboard.createCursorKeys(); 
+    let cursors;    
+    controles(this,  player, cursors);
 
+    if(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE).isDown){
+        this.spaceShipShoot();
         
-
-        
-
-        if (cursors.left.isDown)
-        {
-            player.setVelocityX(-200);
-        }
-        else if (cursors.right.isDown )
-        {
-            player.setVelocityX(200);
-        }
-        else if(cursors.up.isDown){
-            player.setVelocityY(-200);
-        }else if(cursors.down.isDown){
-            player.setVelocityY(200);
-        }
-        else
-        {
-            player.setVelocityX(0);
-            player.setVelocityY(0);
-        }
-
-        
-
-        if(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE).isDown){
-            this.spaceShipShoot();
-            
-
-        }
-        
+    }
 
     }
 
@@ -90,17 +65,50 @@ const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 1300,
-    height: 800,
+    width: 1200,
+    height: 700,
+    
     physics:{
         default: 'arcade',
         gravity: {y: 0},
       },
+      scale: {
+        // Or set parent divId here
+        parent: 'phaser-example',
+
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+
+        // Or put game size here
+        // width: 1024,
+        // height: 768,
+
+        // Minimum size
+        min: {
+            width: 800,
+            height: 600
+        },
+        // Or set minimum size like these
+        // minWidth: 800,
+        // minHeight: 600,
+
+        // Maximum size
+        max: {
+            width: 1600,
+            height: 1200
+        },
+        // Or set maximum size like these
+        // maxWidth: 1600,
+        // maxHeight: 1200,
+
+        zoom: 1,  // Size of game canvas = game size * zoom
+    },
+    autoRound: false,
     scene: MyGame
 };
 
 const game = new Phaser.Game(config);
 let player;
-var cursors;
+
 
 
