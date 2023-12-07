@@ -18,6 +18,9 @@
     "url": "https://github.com/photonstorm/phaser3-project-template/issues"
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "engines": {
+    "node": "^20.10.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
