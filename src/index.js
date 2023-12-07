@@ -282,7 +282,7 @@ class MyGame extends Phaser.Scene {
         spaceBetweenAliens = 50;
         //cria a primeira fileira de inimigos
         for (let i = 0; i < numAliens; i++) {
-            const alien = this.physics.add.sprite(i * spaceBetweenAliens + spaceBetweenAliens, 100, 'alien2');
+            const alien = this.physics.add.sprite(i * spaceBetweenAliens + spaceBetweenAliens+110, 200, 'alien2');
             aliens2.add(alien);
             alien.setCollideWorldBounds(true);
             alien.setScale(0.5);
@@ -298,7 +298,7 @@ class MyGame extends Phaser.Scene {
         }
         //cria a segunda fileira de inimigos
         for (let j = 0; j < numAliens; j++) {
-            const alien = this.physics.add.sprite(j * spaceBetweenAliens + spaceBetweenAliens, 200, 'alien2');
+            const alien = this.physics.add.sprite(j * spaceBetweenAliens + spaceBetweenAliens+110, 300, 'alien2');
             aliens2.add(alien);
             alien.setCollideWorldBounds(true);
             alien.setScale(0.5);
@@ -319,11 +319,11 @@ class MyGame extends Phaser.Scene {
         aliens2.getChildren().forEach(alien => {
             this.tweens.add({
                 targets: alien,
-                x: `+=${screenWidth - spaceBetweenAliens}`,
+                x: `+=${-screenWidth+spaceBetweenAliens}`,
                 onStart: function () {
                     alien.setData('direction', 1);
                 },
-                x: `+=${700 - spaceBetweenAliens}`,
+                x: `+=${650}`,
                 onComplete: function () {
                     alien.setData('direction', -1);
                 },
@@ -388,7 +388,7 @@ class MyGame extends Phaser.Scene {
 
     bossFight() {
         //cria o boss
-        boss = this.physics.add.sprite(screenWidth / 2, screenHeight / 5, 'boss');
+        boss = this.physics.add.sprite(screenWidth / 2, screenHeight / 3, 'boss');
         boss.setCollideWorldBounds(true);
         boss.setScale(0.7);
         
